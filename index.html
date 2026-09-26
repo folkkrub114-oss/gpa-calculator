@@ -250,7 +250,7 @@
   function addRow(subject, credit, grade) {
     const tr = document.createElement('tr');
     tr.innerHTML =
-      '<td class="col-subject"><input type="text" class="subject" placeholder="เช่น แคลคูลัส 1" value="' + (subject || '') + '"></td>' +
+      '<td class="col-subject"><input type="text" class="subject" placeholder="เช่น คณิตศาสตร์" value="' + (subject || '') + '"></td>' +
       '<td class="col-credit"><input type="number" class="credit" min="0" max="10" step="1" value="' + (credit || '') + '"></td>' +
       '<td class="col-grade"><select class="grade">' + gradeOptions(grade) + '</select></td>' +
       '<td class="col-action"><button class="icon-btn remove-row" type="button">ลบ</button></td>';
@@ -300,6 +300,9 @@
     const gpa = totalPoints / totalCredits;
     gpaValueEl.textContent = gpa.toFixed(2);
     gpaMetaEl.textContent = 'จากทั้งหมด ' + totalCredits + ' หน่วยกิต · ' + rows.length + ' วิชา';
+    if (gpa >= 3.50) {
+      gpaMetaEl .textContent=gpaMetaEl.textContent+' · เกียรตินิยม!';
+    }
     resultEl.classList.add('show');
   });
 
