@@ -203,13 +203,9 @@
         <thead>
           <tr>
             <th class="col-subject">ชื่อวิชา</th>
-            
             <th class="col-credit">หน่วยกิต</th>
-            
             <th class="col-grade">เกรด</th>
-            
             <th class="col-action"></th>
-            
           </tr>
         </thead>
         <tbody id="rows"></tbody>
@@ -224,9 +220,13 @@
     <button class="calc-btn" id="calcBtn" type="button">คำนวณ GPA</button>
 
     <div class="result" id="result">
+
       <div class="label">เกรดเฉลี่ยสะสม</div>
+
       <div class="value" id="gpaValue">0.00</div>
+
       <div class="meta" id="gpaMeta"></div>
+
     </div>
 
     <footer>ค่าเกรด A=4.00, B+=3.50, B=3.00, C+=2.50, C=2.00, D+=1.50, D=1.00, F=0.00</footer>
@@ -276,6 +276,7 @@
 
   document.getElementById('calcBtn').addEventListener('click', function() {
     const rows = rowsEl.querySelectorAll('tr');
+    /* ระบบปุ่ม */
     let totalCredits = 0;
     let totalPoints = 0;
     let hasError = false;
@@ -292,6 +293,7 @@
       }
       totalCredits += credit;
       totalPoints += credit * GRADE_POINTS[grade];
+      /* ดึงค่าตัวเลขแล้วสะสม */
     });
 
     if (hasError || totalCredits === 0) {
@@ -306,9 +308,11 @@
     gpaMetaEl.textContent = 'จากทั้งหมด ' + totalCredits + ' หน่วยกิต · ' + rows.length + ' วิชา';
     if (gpa >= 3.50) {
       gpaMetaEl .textContent=gpaMetaEl.textContent+' · เกียรตินิยม!';
+      /* คำนวนเกรด */
     }
     resultEl.classList.add('show');
   });
+  
 
   // start with three empty rows
   addRow();
@@ -317,3 +321,4 @@
 </script>
 </body>
 </html>
+
